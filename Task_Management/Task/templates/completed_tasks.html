@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load crispy_forms_tags %} 
+{% csrf_token %}
+
+<div>
+  {% if completed_tasks %}
+    <h4 style="text-align: center;">Completed Tasks</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in completed_tasks %}
+        <tr>
+          <td scope="row">{{ task.Title }}</td>
+          <td scope="row">{{ task.Description }}</td>
+          <td>Complete</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <h4>"No complete data is available."</h4>
+  {% endif %}
+</div>
+{% endblock %}
